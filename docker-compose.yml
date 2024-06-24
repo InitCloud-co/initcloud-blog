@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  initcloud-blog-stage:
+    container_name: initcloud-blog
+    image: ${REGISTRY}/${REPOSITORY}:stage
+    env_file:
+      - ./.env
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+  initcloud-blog-prod:
+    container_name: initcloud-blog
+    image: ${REGISTRY}/${REPOSITORY}:prod
+    env_file:
+      - ./.env
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
